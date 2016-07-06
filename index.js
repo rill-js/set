@@ -1,3 +1,5 @@
+var qSet = require('q-set')
+
 /**
  * Add a constant local variable as a middleware.
  *
@@ -8,7 +10,7 @@
  */
 module.exports = function (key, value) {
 	return function set (ctx, next) {
-		ctx.locals[key] = value;
+		qSet(ctx.locals, key, value)
 		return next();
 	}
 };

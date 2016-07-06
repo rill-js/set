@@ -8,8 +8,14 @@ describe("Rill/Set", function () {
 		var request = agent(
 			Rill()
 				.use(set("a", 1))
+				.use(set("b[]", 1))
+				.use(set("c[d]", 1))
 				.use(function (ctx) {
-					assert.equal(ctx.locals.a, 1);
+					assert.deepEqual(ctx.locals, {
+						a: 1,
+						b: [1],
+						c: { d: 1 }
+					})
 					ctx.res.status = 200;
 				})
 				.listen()
