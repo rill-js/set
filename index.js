@@ -1,3 +1,5 @@
+'use strict'
+
 var qSet = require('q-set')
 
 /**
@@ -9,8 +11,8 @@ var qSet = require('q-set')
  * @api public
  */
 module.exports = function (key, value) {
-	return function set (ctx, next) {
-		qSet(ctx.locals, key, value)
-		return next();
-	}
-};
+  return function set (ctx, next) {
+    qSet(ctx.locals, key, value)
+    return next()
+  }
+}
